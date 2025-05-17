@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glasentsorgung Karlsruhe</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .map-container {
+            flex: 2;
+            position: relative;
+        }
+        .map-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+        .controls {
+            flex: 1;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .route {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+        .route.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="map-container">
+            <img src="https://maps.googleapis.com/maps/api/staticmap?center=Karlsruhe,Germany&zoom=13&size=800x600&maptype=roadmap&markers=color:blue%7C48.9971,8.4010&markers=color:blue%7C48.9871,8.3910&key=YOUR_API_KEY" alt="Karlsruhe Map" class="map-image">
+            <svg class="route" viewBox="0 0 800 600">
+                <path d="M400,300 L500,400" stroke="red" stroke-width="4" fill="none" stroke-dasharray="10,5">
+                    <animate attributeName="stroke-dashoffset" from="0" to="100" dur="2s" repeatCount="indefinite"/>
+                </path>
+            </svg>
+        </div>
+        <div class="controls">
+            <h2>Glascontainer Route</h2>
+            <button class="button" onclick="showRoute()">Route anzeigen</button>
+            <button class="button" onclick="hideRoute()">Route ausblenden</button>
+        </div>
+    </div>
+
+    <script>
+        function showRoute() {
+            document.querySelector('.route').classList.add('active');
+        }
+        
+        function hideRoute() {
+            document.querySelector('.route').classList.remove('active');
+        }
+    </script>
+</body>
+</html> 
